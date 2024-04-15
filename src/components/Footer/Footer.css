@@ -1,0 +1,13 @@
+.footer {
+    display: block;
+    background: linear-gradient(180deg, rgb(16, 225, 79) 0%, rgb(66, 115, 200) 100%) !important;
+  }
+
+  .footer li{
+     padding:8px;
+  }
+  .footer .copyright-text {
+    margin-top: 0.7rem;
+    color:black;
+  }
+  

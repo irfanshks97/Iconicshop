@@ -1,0 +1,34 @@
+/* Import App.scss */
+@import "../../App.css";
+
+.header {
+  background: rgb(232, 225, 224);
+  background: linear-gradient(180deg, rgb(16, 225, 79) 0%, rgb(66, 115, 200) 100%) !important;
+  color: black;
+}
+
+.header .navbar{
+  margin-top:50px;
+}
+.header img{
+   width:200px;
+   margin:50px 50px 50px 200px;
+   z-index: 999;
+}
+
+@media screen and (max-width:1200px) and (min-width:576px) {
+  .header img {
+    width:75%;
+    margin:50px 100px 0px -50px;
+ }
+}
+
+@media screen and (max-width:576px) {
+  .header img{
+    width:100%;
+    margin-top:50px;
+    margin-bottom: 50px;
+    margin-left:-20px;
+    margin-right:50px;
+ }
+}

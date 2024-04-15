@@ -1,0 +1,6 @@
+/* Import App.scss */
+@import "../../App.css";
+
+.cat-products {
+  min-height: 100vh;
+}
