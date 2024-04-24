@@ -1,10 +1,10 @@
 /* Import App.scss */
 @import "../../App.css";
-
+*{
+  box-sizing: border-box;
+}
 .header {
-  background: rgb(232, 225, 224);
   background: linear-gradient(180deg, rgb(16, 225, 79) 0%, rgb(66, 115, 200) 100%) !important;
-  color: black;
 }
 
 .header .navbar{
@@ -16,14 +16,8 @@
    z-index: 999;
 }
 
-@media screen and (max-width:1200px) and (min-width:576px) {
-  .header img {
-    width:75%;
-    margin:50px 100px 0px -50px;
- }
-}
-
 @media screen and (max-width:576px) {
+  
   .header img{
     width:100%;
     margin-top:50px;
@@ -31,4 +25,29 @@
     margin-left:-20px;
     margin-right:50px;
  }
+}
+
+@media screen and (max-width:768px) and (min-width:576px) {
+  .header img {
+    width:75%;
+    margin:50px 100px 40px -50px;
+ }
+}
+
+@media screen and (max-width:1200px) and (min-width:768px) {
+  .navbar{
+    width:100%;
+     margin-left: 20px;
+  }
+  .header img {
+    width:75%;
+    margin:50px 100px 10px 70px;
+ }
+}
+
+@media  screen and (min-width:1200px) {
+   .header img{
+    width:50%;
+    margin:50px 100px 10px 100px;
+   }
 }

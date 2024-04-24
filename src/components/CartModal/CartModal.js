@@ -6,19 +6,19 @@ import { formatPrice } from '../../utils/helpers';
 const CartModal = ({carts}) => {
   return (
     <div className='cart-modal'>
-      <h5 className='cart-modal-title fw-5 fs-15 font-manrope text-center'>Recenlty Added Products</h5>
+      <h5 className='cart-modal-title fw-5 fs-15 font-manrope text-center text-dark'>Recenlty Added Products</h5>
       {
         (carts?.length > 0) ? (
           <div className='cart-modal-list grid'>
             {
               carts.map(cart => {
                 return (
-                  <div className='cart-modal-item grid align-center font-manrope py-2' key = {cart.id}>
+                  <div className='cart-modal-item grid align-center font-manrope d-flex flex-column' key = {cart.id}>
                     <div className='cart-modal-item-img'>
-                      <img src = {cart?.thumbnail} alt = "" className='img-cover' />
+                      <img src = {cart?.thumbnail} alt = "" className='img-cover w-100 m-0 mt-3 ' />
                     </div>
-                    <div className='cart-modal-item-title fs-13 font-manrope text-capitalize'>{cart?.title}</div>
-                    <div className='cart-modal-item-price text-orange fs-14 fw-6'>
+                    <div className='cart-modal-item-title fs-13 font-manrope text-capitalize mt-4'>{cart?.title}</div>
+                    <div className='cart-modal-item-price text-dark fs-14 fw-6 mt-3'>
                       {formatPrice(cart?.discountedPrice)}
                     </div>
                   </div>

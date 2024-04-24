@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const fetchFromLocalStorage = () => {
     let cart = localStorage.getItem('cart');
     if(cart){
-        return JSON.parse(localStorage.getItem('cart'));
+        return JSON.parse(cart);
     } else {
         return [];
     }
@@ -25,33 +25,26 @@ const cartSlice = createSlice({
     initialState,
     reducers: {
         addToCart: (state, action) => {
-            const isItemInCart = state.carts.find(item => item.id === action.payload.id);
-
-            if(isItemInCart){
-                const tempCart = state.carts.map(item => {
-                    if(item.id === action.payload.id){
-                        let tempQty = item.quantity + action.payload.quantity;
-                        let tempTotalPrice = tempQty * item.price;
-
-                        return {
-                            ...item, quantity: tempQty, totalPrice: tempTotalPrice
-                        }
-                    } else {
-                        return item;
-                    }
-                });
-
-                state.carts = tempCart;
-                storeInLocalStorage(state.carts);
+            const { id, quantity, price } = action.payload;
+            const existingItemIndex = state.carts.findIndex(item => item.id === id);
+        
+            if (existingItemIndex !== -1) {
+                const updatedCarts = [...state.carts];
+                const existingItem = updatedCarts[existingItemIndex];
+                updatedCarts[existingItemIndex] = {
+                    ...existingItem,
+                    quantity: existingItem.quantity + quantity,
+                    totalPrice: (existingItem.quantity + quantity) * price
+                };
+                state.carts = updatedCarts;
             } else {
                 state.carts.push(action.payload);
-                storeInLocalStorage(state.carts);
             }
+            storeInLocalStorage(state.carts);
         },
 
         removeFromCart: (state, action) => {
-            const tempCart = state.carts.filter(item => item.id !== action.payload);
-            state.carts = tempCart;
+            state.carts = state.carts.filter(item => item.id !== action.payload);
             storeInLocalStorage(state.carts);
         },
 
@@ -69,7 +62,7 @@ const cartSlice = createSlice({
         },
 
         toggleCartQty: (state, action) => {
-            const tempCart = state.carts.map(item => {
+            state.carts = state.carts.map(item => {
                 if(item.id === action.payload.id){
                     let tempQty = item.quantity;
                     let tempTotalPrice = item.totalPrice;
@@ -91,8 +84,6 @@ const cartSlice = createSlice({
                     return item;
                 }
             });
-
-            state.carts = tempCart;
             storeInLocalStorage(state.carts);
         },
 
@@ -106,7 +97,7 @@ const cartSlice = createSlice({
     }
 });
 
-export const {addToCart, setCartMessageOff, setCartMessageOn, getCartTotal, toggleCartQty, clearCart, removeFromCart} = cartSlice.actions;
+export const { addToCart, setCartMessageOff, setCartMessageOn, getCartTotal, toggleCartQty, clearCart, removeFromCart } = cartSlice.actions;
 export const getAllCarts = (state) => state.cart.carts;
 export const getCartItemsCount = (state) => state.cart.itemsCount;
 export const getCartMessageStatus = (state) => state.cart.isCartMessageOn;

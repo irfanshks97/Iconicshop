@@ -50,7 +50,7 @@ const CartPage = () => {
             </div>
           </div>
 
-          <div className='cart-cbody bg-dark'>
+          <div className='cart-cbody bg-white'>
             {
               carts.map((cart, idx) => {
                 return (
