@@ -20,6 +20,7 @@ const initialState = {
     isCartMessageOn: false
 }
 
+
 const cartSlice = createSlice({
     name: 'cart',
     initialState,
